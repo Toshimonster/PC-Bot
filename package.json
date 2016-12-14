@@ -1,0 +1,24 @@
+{
+  "name": "pc-bot",
+  "version": "3.0.0",
+  "description": "PC Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Toshimonster/PC-Bot.git"
+  },
+  "author": "Toshimonster",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Toshimonster/PC-Bot/issues"
+  },
+  "homepage": "https://github.com/Toshimonster/PC-Bot#readme",
+  "dependencies": {
+    "discord.js": "github:hydrabolt/discord.js#indev",
+    "erlpack": "github:hammerandchisel/erlpack",
+    "node-opus": "^0.2.4"
+  }
+}
