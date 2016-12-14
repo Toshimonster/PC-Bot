@@ -10,7 +10,7 @@ users.forEach((element, index) => {
 users = new discord.Collection(users);
 
 String.prototype.aliasize = function() {
-    if (aliases[this.toLowerCase()]) return aliases[this];
+    if (aliases[this.toLowerCase()]) return aliases[this.toLowerCase()];
     return this;
 };
 
