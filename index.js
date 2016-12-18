@@ -3,7 +3,8 @@ const discord  = utils.discord;
 const pc_bot   = new discord.Client();
 const commands = {
     base       : require("./utils/base_commands"),
-    obtainable : require("./utils/obtn_commands")
+    obtainable : require("./utils/obtn_commands"),
+    pcgame     : require("./utils/pcgm_commands")
 };
 
 pc_bot.on("message", (message) => {
@@ -22,6 +23,8 @@ pc_bot.on("message", (message) => {
         exmic = commands.obtainable.get(message.cmd);
         if (exmic != undefined || message.cmd in message.member.exmic) {
             exmic.execute(message);
+        } else if (message.cmd == 'PlanetCoasterGame') {
+            commands.pcgame(message)
         } else {
             message.channel.sendTempMessage(`"${message.p_cmd}" is not recognised as a usable command, for ${message.author.username}`)
         }
