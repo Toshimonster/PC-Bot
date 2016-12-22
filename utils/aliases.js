@@ -1,55 +1,60 @@
-module.exports = {
+let {Collection} = require("discord.js");
+module.exports = new Collection([
 
-    "js"                : "JavaScript",
-    "javascript"        : "JavaScript",
+    ["js"                , "JavaScript"],
+    ["javascript"        , "JavaScript"],
 
-    "ws"                : "Workshop",
-    "workshop"          : "Workshop",
+    ["ws"                , "Workshop"],
+    ["workshop"          , "Workshop"],
 
-    "py"                : "Python",
-    "python"            : "Python",
+    ["py"                , "Python"],
+    ["python"            , "Python"],
 
-    "test"              : "Ping",
-    "ping"              : "Ping",
+    ["test"              , "Ping"],
+    ["ping"              , "Ping"],
 
-    "gif"               : "Giphy",
-    "giphy"             : "Giphy",
+    ["gif"               , "Giphy"],
+    ["giphy"             , "Giphy"],
 
-    "eval"              : "Evaluate",
-    "evaluate"          : "Evaluate",
+    ["eval"              , "Evaluate"],
+    ["evaluate"          , "Evaluate"],
 
-    "kitten"            : "Cat",
-    "cat"               : "Cat",
+    ["kitten"            , "Cat"],
+    ["cat"               , "Cat"],
 
-    "deletehistory"     : "Prune",
-    "prune"             : "Prune",
+    ["deletehistory"     , "Prune"],
+    ["prune"             , "Prune"],
 
-    "httpget"           : "Get",
-    "get"               : "Get",
+    ["httpget"           , "Get"],
+    ["get"               , "Get"],
 
-    "httppost"          : "Post",
-    "post"              : "Post",
+    ["httppost"          , "Post"],
+    ["post"              , "Post"],
 
-    "changegame"        : "Game",
-    "game"              : "Game",
+    ["changegame"        , "Game"],
+    ["game"              , "Game"],
 
-    "start"             : "Restart",
-    "restart"           : "Restart",
+    ["start"             , "Restart"],
+    ["restart"           , "Restart"],
 
-    "help"              : "Help",
-    "guide"             : "Help",
+    ["help"              , "Help"],
+    ["guide"             , "Help"],
 
-    "coins"             : "Coins",
-    "pcoins"            : "Coins",
+    ["coins"             , "Coins"],
+    ["pcoins"            , "Coins"],
 
-    "mute"              : "Mute",
-    "deafen"            : "Mute",
+    ["mute"              , "Mute"],
+    ["deafen"            , "Mute"],
 
-    "planco"            : "Planco",
-    "peeptalk"          : "Planco",
+    ["planco"            , "Planco"],
+    ["peeptalk"          , "Planco"],
 
-    "planetcoastergame" : "PlanetCoasterGame",
-    "pcgame"            : "PlanetCoasterGame",
-    "pcg"               : "PlanetCoasterGame"
+    ["planetcoastergame" , "PlanetCoasterGame"],
+    ["pgame"             , "PlanetCoasterGame"],
+    ["pcgame"            , "PlanetCoasterGame"],
 
-};
+    ["info"              , "Info"],
+    ["infomation"        , "Info"],
+    ["stats"             , "Info"]
+
+]);

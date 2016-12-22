@@ -9,8 +9,8 @@ const commands = {
 
 pc_bot.on("message", (message) => {
 
-    if (message.member.bot) return;
-    if (!message.content.startsWith(utils.config.prefix)) return;
+    if (message.member.bot || !message.content.startsWith(utils.config.prefix)) return;
+
     message.casheValues();
     message.member.casheValues();
 
@@ -34,6 +34,14 @@ pc_bot.on("message", (message) => {
 
 pc_bot.on('ready', () => {
     console.log(`${pc_bot.user.username} is up and running!`)
+});
+
+setInterval(() => {
+
+}, 60000); //Every 60 seconds
+
+process.on("unhandled Rejection", err => {
+    console.error("Uncaught Promise Error: \n" + err.stack);
 });
 
 pc_bot.login(utils.config.token || process.argv[2]);

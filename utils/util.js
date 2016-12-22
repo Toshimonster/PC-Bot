@@ -4,13 +4,10 @@ let users   = require("./users");
 let config  = require("./config");
 let fs      = require("fs");
 
-users.forEach((element, index) => {
-    users[index][1].items = new discord.Collection(users[index][1].items);
-});
 users = new discord.Collection(users);
 
 String.prototype.aliasize = function() {
-    if (aliases[this.toLowerCase()]) return aliases[this.toLowerCase()];
+    if (aliases.get(this.toLowerCase())) return aliases.get(this.toLowerCase());
     return this;
 };
 
@@ -19,17 +16,15 @@ Array.prototype.aliasize = function() {
     this.forEach( function(element) {
         if (typeof(element) == 'string') {
             aliasized.push(element.aliasize())
+        } else {
+            aliasized.push(element)
         }
-        aliasized.push(element)
     });
     return aliasized
 };
 
 discord.Collection.prototype.saveUsers = function(reason) {
     let data = Array.from(this);
-    data.forEach((element, index) => {
-        data[index][1].items = Array.from(data[index][1].items)
-    });
     fs.writeFile('./utils/users.js',
         `module.exports = ${JSON.stringify(data, null, "\t")};`,
         'utf8',
@@ -52,15 +47,41 @@ discord.GuildMember.prototype.casheValues = function() {
     if (data == undefined) {
         users.set(this.id, {
             coins : 1000,
-            items : new discord.Collection(),
-            exmic : new discord.Collection()
+            items : [],
+            exmic : [],
+            pgame : {
+                park : {
+                    name   : "My Park",
+                    guests : 0,
+                    rides  : [],
+                    rating : 0
+                }
+            }
         });
         users.saveUsers(`New user { ${this.id}, ${this.user.username} }`);
         data = users.get(this.id);
     }
+    data.items.findItem = function(item) {
+        let thisReturn = false;
+        this.forEach(element => {
+            if (element = item) thisReturn = true;
+        });
+        return thisReturn
+    };
     this.coins = data.coins;
     this.items = data.items;
-    this.exmic = data.exmic
+    this.exmic = data.exmic;
+    this.pgame = data.pgame;
+};
+
+discord.GuildMember.prototype.addToUsers = function() {
+    users.set(this.id, {
+        "coins" : this.coins,
+        "items" : this.items,
+        "exmic" : this.exmic,
+        "pgame" : this.pgame
+    });
+    users.saveUsers(`User Mod { ${this.id}, ${this.user.username} }`)
 };
 
 discord.GuildMember.prototype.isMod = function() {
@@ -68,13 +89,10 @@ discord.GuildMember.prototype.isMod = function() {
     return this.hasPermission('BAN_MEMBERS')
 };
 
-discord.TextChannel.prototype.sendTempMessage = function(content, message = false) {
-    if(message) {
-        message.delete(1000)
-    }
-    this.sendMessage(content)
+discord.TextChannel.prototype.sendTempMessage = function(content, options = undefined) {
+    this.sendMessage(content, options)
         .then( (msg) => {
-            msg.delete(5000);
+            msg.delete(10000);
         });
 };
 
